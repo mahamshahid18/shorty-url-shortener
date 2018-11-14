@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const DbConnector = require('./db/DbConnector');
 const UrlController = require('./url/UrlController');
+const AnalyticsController = require('./analytics/AnalyticsController');
 
 const app = express();
 app.use(cors());
@@ -33,3 +34,4 @@ app.get('/', (req, res) => {
 });
 
 app.use('/url', UrlController);
+app.use('/analytics', AnalyticsController);

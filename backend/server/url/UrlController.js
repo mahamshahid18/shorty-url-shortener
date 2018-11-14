@@ -19,6 +19,15 @@ let checkUrlExists = (req, res, next) => {
     .catch((err) => next(err));
 }
 
+let updateAnalyticsData = (record) => {
+    Url.updateOne(
+        { "short_url" : record.short_url },
+        { $set: { "access_count": record.access_count + 1, "last_accessed": new Date() } }
+    )
+    .then(data => console.log('Record updated with latest data'))
+    .catch(err => console.log(err));
+}
+
 router.route('/')
     .post(checkUrlExists, (req, res, next) => {
         const resolved = req.resolvedUrl;
@@ -62,6 +71,7 @@ router.route('/')
             res.status(200);
             res.send(record.long_url);
             console.log('Short url %s resolved to %s', shortUrl, record.long_url);
+            updateAnalyticsData(record);
         })
         .catch(err => next(err));
     });

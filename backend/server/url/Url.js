@@ -8,7 +8,8 @@ const urlSchema = new mongoose.Schema({
     created_at: { type: String, required: true },
     expired: { type: Boolean, default: false},
     expiry: String,
-    last_accessed: String
+    last_accessed: String,
+    access_count: Number
 });
 
 module.exports = mongoose.model('Url', urlSchema);
