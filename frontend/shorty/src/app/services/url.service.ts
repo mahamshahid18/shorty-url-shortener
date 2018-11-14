@@ -11,14 +11,18 @@ import { catchError } from 'rxjs/operators';
 })
 export class UrlService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  urlRoutePath = '';
+
+  constructor(private http: HttpClient, private router: Router) {
+    this.urlRoutePath = `${environment.backendBaseUrl}/url`;
+  }
 
   createShortUrl(url) {
-    return this.http.post(environment.backendBaseUrl, { url }, { responseType: 'text' });
+    return this.http.post(this.urlRoutePath, { url }, { responseType: 'text' });
   }
 
   getResolvedLongUrl(shorturl) {
-    const path = `${environment.backendBaseUrl}?shorturl=${shorturl}`;
+    const path = `${this.urlRoutePath}?shorturl=${shorturl}`;
     return this.http.get(path, { responseType: 'text' })
       .pipe(
         catchError((err) => {
@@ -28,6 +32,7 @@ export class UrlService {
               { skipLocationChange: false }
             );
           }
+          console.log(err);
           return err;
         })
       );
