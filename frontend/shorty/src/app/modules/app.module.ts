@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +14,8 @@ import { AnalyticsItemComponent } from '../components/analytics-item.component';
 import { UrlShorteningComponent } from '../components/url-shortening.component';
 import { ViewUrlComponent } from '../components/view-url.component';
 import { NotFoundComponent } from '../components/not-found.component';
+
+import { UrlService } from '../services/url.service';
 
 const appRoutes: Routes = [
   { path: '', component: UrlShorteningComponent },
@@ -35,11 +38,14 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
     FormsModule,
     MatCardModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    UrlService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

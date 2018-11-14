@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UrlService } from '../services/url.service';
+
 @Component({
   selector: 'app-url-shortening',
   templateUrl: './component-templates/url-shortening.component.html',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UrlShorteningComponent implements OnInit {
 
-  constructor() { }
+  shortUrl = '';
+  input = {
+    url: ''
+  };
+
+  constructor(private service: UrlService) { }
 
   ngOnInit() {
+  }
+
+  shortenUrl() {
+    this.service.createShortUrl(this.input.url).subscribe((data) => {
+      this.shortUrl = data.toString();
+    });
   }
 
 }

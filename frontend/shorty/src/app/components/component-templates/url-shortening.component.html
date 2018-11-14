@@ -4,10 +4,26 @@
       Shorten a URL by pasting it in the box below
     </p>
     <div class="input-group">
-      <input type="url" class="form-control">
+      <input
+        type="url"
+        class="form-control"
+        placeholder="Enter a URL to shorten it"
+        name="url"
+        [(ngModel)]="input.url"
+        #url="ngModel"
+      />
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="shortenUrl()"
+        >
+          Button
+        </button>
       </div>
     </div>
+    <p *ngIf="shortUrl">
+      Shortened URL: {{ shortUrl }}
+    </p>
   </div>
 </div>
