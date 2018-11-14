@@ -70,12 +70,12 @@ router.route('/')
                 return res
                   .status(404)
                   .send("No such resource exists!");
+            } else {
+                res.status(200);
+                res.send(record.long_url);
+                console.log('Short url %s resolved to %s', shortUrl, record.long_url);
+                updateAnalyticsData(record);
             }
-
-            res.status(200);
-            res.send(record.long_url);
-            console.log('Short url %s resolved to %s', shortUrl, record.long_url);
-            updateAnalyticsData(record);
         })
         .catch(err => next(err));
     });

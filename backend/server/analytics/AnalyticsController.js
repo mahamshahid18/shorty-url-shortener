@@ -11,13 +11,14 @@ router.route('/')
 
         if (req.query.shorturl) {
             next();
+        } else {
+            Url.find()
+            .then((data) => {
+                res.status(200).send(data);
+                console.log('All urls returned');
+            })
+            .catch(err => next(err));
         }
-        Url.find()
-        .then((data) => {
-            res.status(200).send(data);
-            console.log('All urls returned');
-        })
-        .catch(err => next(err));
     })
     .get((req, res, next) => {
         // endpoint that returns data about a specific url
