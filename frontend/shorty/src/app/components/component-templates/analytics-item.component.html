@@ -1,16 +1,41 @@
-<div class="container">
+<div class="container d-flex justify-content-center">
   <mat-card class="mt-5 w-50">
+    <small
+      class="expired-link"
+      *ngIf="checkLinkExpired(url.expiry)"
+    >
+      link expired
+    </small>
     <mat-card-title>
-      https://shorty.surge.sh/y0DAEq7G0
+      {{ getLinkName(url.short_url) }}
     </mat-card-title>
     <mat-card-subtitle>
-      https://www.example.com/posts/post/1/users/22
+      {{ getLinkName(url.long_url) }}
     </mat-card-subtitle>
+
     <mat-card-content>
+      <span>Created {{ getAccessTimeString(url.created_at) }}</span>
+      <div class="data-container">
+        <div class="data-item">
+          <span>Accessed</span>
+          <span>{{ url.access_count }} Times</span>
+        </div>
+        <div class="data-item">
+          <span>Last Accessed</span>
+          <span> {{ getAccessTimeString(url.last_accessed) }} </span>
+        </div>
+      </div>
     </mat-card-content>
+
     <mat-card-actions>
-      <button mat-raised-button color="primary">OPEN</button>
-      <button mat-raised-button color="accent">COPY</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="'/' + url.short_id"
+      >
+        OPEN LINK
+      </button>
     </mat-card-actions>
+
   </mat-card>
 </div>
