@@ -1,11 +1,17 @@
 <div class="container-fluid">
   <div class="list-group">
-    <a href="/analytics/y0DAEq7G0" class="list-group-item list-group-item-action flex-column align-items-start w-50 mt-1">
+    <a
+      class="list-group-item list-group-item-action flex-column align-items-start w-50 mt-1"
+      *ngFor="let url of urlsData"
+      [routerLink]="getLink(url.short_id)"
+    >
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">https://shorty.surge.sh/y0DAEq7G0</h5>
+        <h5 class="mb-1">
+          {{ url.short_url }}
+        </h5>
       </div>
       <small class="mb-1">
-        https://example.com/posts/post/1/users/22
+        {{ url.long_url }}
       </small>
     </a>
   </div>

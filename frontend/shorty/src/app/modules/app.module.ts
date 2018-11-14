@@ -16,6 +16,7 @@ import { ViewUrlComponent } from '../components/view-url.component';
 import { NotFoundComponent } from '../components/not-found.component';
 
 import { UrlService } from '../services/url.service';
+import { AnalyticsService } from '../services/analytics.service';
 
 const appRoutes: Routes = [
   { path: '', component: UrlShorteningComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     MatButtonModule,
   ],
   providers: [
-    UrlService
+    UrlService,
+    AnalyticsService
   ],
   bootstrap: [AppComponent]
 })
