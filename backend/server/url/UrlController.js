@@ -35,16 +35,20 @@ router.route('/')
             res.status(200).send(resolved);
             console.log('Shortened url already exists: %s', resolved);
         } else {
+            const id = shortid.generate();
             const longUrl = req.body.url;
-            const shortUrl = `${process.env.APP_BASE_URL}${shortid.generate()}`;
+            const shortUrl = `${process.env.APP_BASE_URL}${id}`;
             const expiry = req.body.expiry;
 
             const urlRecord = new Url({
+                short_id: id,
                 long_url: longUrl,
                 short_url: shortUrl,
                 created_at: new Date(),
                 expired: false,
                 expiry,
+                access_count: 0,
+                last_accessed: ''
             });
             urlRecord.save()
             .then((data) => {
