@@ -13,10 +13,26 @@ let checkUrlExists = (req, res, next) => {
     .then((data) => {
         if (data) {
             req.resolvedUrl = data.short_url;
+            req.expired = checkLinkExpired(data.expiry, data.created_at);
+            console.log('checking url...')
+            console.log(data.short_url);
+            console.log(expired);
+            console.log('url check complete...');
         }
         next();
     })
     .catch((err) => next(err));
+}
+
+let checkLinkExpired = (expiryHours, createdTimeString) => {
+    const currentTime = new Date();
+    const createdTime = new Date(createdTimeString);
+
+    const createdTimeHours = Math.round(createdTime.valueOf() / 3600000);
+    const currentTimeHours = Math.round(currentTime.valueOf() / 3600000);
+
+    const expired = createdTimeHours + expiryHours < currentTimeHours ? true : false;
+    return expired;
 }
 
 let updateAnalyticsData = (record) => {
@@ -31,21 +47,22 @@ let updateAnalyticsData = (record) => {
 router.route('/')
     .post(checkUrlExists, (req, res, next) => {
         const resolved = req.resolvedUrl;
-        if (resolved) {
+        const expired = req.expired;
+        if (resolved && !expired) {
             res.status(200).send(resolved);
             console.log('Shortened url already exists: %s', resolved);
         } else {
             const id = shortid.generate();
             const longUrl = req.body.url;
             const shortUrl = `${process.env.APP_BASE_URL}${id}`;
-            const expiry = req.body.expiry;
+            // TODO: change default value of expiry
+            const expiry = req.body.expiry || 1;
 
             const urlRecord = new Url({
                 short_id: id,
                 long_url: longUrl,
                 short_url: shortUrl,
                 created_at: new Date(),
-                expired: false,
                 expiry,
                 access_count: 0,
                 last_accessed: ''
@@ -70,6 +87,9 @@ router.route('/')
                 return res
                   .status(404)
                   .send("No such resource exists!");
+            } else if (checkLinkExpired(record.expiry, record.created_at)) {
+                res.status(403).send();
+                console.log('Attempt to view an expired link %s', shortUrl);
             } else {
                 res.status(200);
                 res.send(record.long_url);
