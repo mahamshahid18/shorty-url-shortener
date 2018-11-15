@@ -7,9 +7,11 @@ import { FormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { AppComponent } from '../components/app.component';
 import { AnalyticsComponent } from '../components/analytics.component';
@@ -49,9 +51,11 @@ const appRoutes: Routes = [
     FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule
   ],
   providers: [
     UrlService,

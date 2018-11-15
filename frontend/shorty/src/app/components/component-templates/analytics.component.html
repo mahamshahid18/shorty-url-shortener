@@ -1,4 +1,36 @@
 <div class="container-fluid">
+  <form>
+    <div class="form-container">
+      <div class="form-item">
+        <mat-label>Ascending Sort</mat-label>
+        <mat-slide-toggle
+          name="sortOrder"
+          color="accent"
+          [checked]="sortByAscending"
+          [(ngModel)]="sortByAscending"
+        >
+        </mat-slide-toggle>
+      </div>
+      <div class="form-item">
+        <mat-label>Field</mat-label>
+        <mat-button-toggle-group
+          [(ngModel)]="sortByField"
+          name="sortFields"
+        >
+          <mat-button-toggle
+            value="access_count"
+          >
+            No. Of Visits
+          </mat-button-toggle>
+          <mat-button-toggle
+            value="last_accessed"
+          >
+            Last Accessed
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </form>
   <div class="list-group">
     <a
       class="list-group-item list-group-item-action flex-column align-items-start w-50 mt-1"
