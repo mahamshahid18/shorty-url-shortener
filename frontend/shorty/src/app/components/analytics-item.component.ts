@@ -38,14 +38,14 @@ export class AnalyticsItemComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  checkLinkExpired(expiryTime: any) {
-    if (!expiryTime) {
-      return false;
-    }
+  checkLinkExpired(expiryHours: number, createdTimeString: string) {
+    const currentTime: Date = new Date();
+    const createdTime: Date = new Date(createdTimeString);
 
-    const currentTime: any = new Date();
-    const timeDiff = moment(expiryTime).diff(moment(currentTime));
-    const expired = timeDiff > 0 ? true : false;
+    const createdTimeHours = Math.round(createdTime.valueOf() / 3600000);
+    const currentTimeHours = Math.round(currentTime.valueOf() / 3600000);
+
+    const expired = createdTimeHours + expiryHours < currentTimeHours ? true : false;
     return expired;
   }
 
