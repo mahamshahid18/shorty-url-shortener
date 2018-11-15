@@ -2,7 +2,7 @@
   <mat-card class="mt-5 w-50">
     <small
       class="expired-link"
-      *ngIf="checkLinkExpired(url.expiry)"
+      *ngIf="checkLinkExpired(url.expiry, url.created_at)"
     >
       link expired
     </small>

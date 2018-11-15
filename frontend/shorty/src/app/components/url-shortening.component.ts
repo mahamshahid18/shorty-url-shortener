@@ -13,14 +13,19 @@ export class UrlShorteningComponent implements OnInit {
   input = {
     url: ''
   };
+  hourValues: number[];
 
-  constructor(private service: UrlService) { }
+  constructor(private service: UrlService) {
+    // 168 hours in a week, links can be active for
+    // a max of 1 week
+    this.hourValues = new Array(168);
+  }
 
   ngOnInit() {
   }
 
-  shortenUrl() {
-    this.service.createShortUrl(this.input.url).subscribe((data) => {
+  shortenUrl(expirySelected) {
+    this.service.createShortUrl(this.input.url, expirySelected).subscribe((data) => {
       this.shortUrl = data.toString();
     });
   }

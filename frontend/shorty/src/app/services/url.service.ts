@@ -17,8 +17,8 @@ export class UrlService {
     this.urlRoutePath = `${environment.backendBaseUrl}/url`;
   }
 
-  createShortUrl(url) {
-    return this.http.post(this.urlRoutePath, { url }, { responseType: 'text' });
+  createShortUrl(url, expiry) {
+    return this.http.post(this.urlRoutePath, { url, expiry }, { responseType: 'text' });
   }
 
   getResolvedLongUrl(shorturl) {
@@ -31,8 +31,15 @@ export class UrlService {
               `/404`,
               { skipLocationChange: false }
             );
+          } else if (err.status === 403) {
+            // TODO: navigate to a new route /expired which says
+            // link is expired and cannot be accessed
+            this.router.navigateByUrl(
+              `/expired`,
+              { skipLocationChange: false }
+            );
           }
-          console.log(err);
+          // console.log(err);
           return err;
         })
       );

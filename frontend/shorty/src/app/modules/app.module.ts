@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from '../components/app.component';
 import { AnalyticsComponent } from '../components/analytics.component';
@@ -14,6 +17,7 @@ import { AnalyticsItemComponent } from '../components/analytics-item.component';
 import { UrlShorteningComponent } from '../components/url-shortening.component';
 import { ViewUrlComponent } from '../components/view-url.component';
 import { NotFoundComponent } from '../components/not-found.component';
+import { LinkExpiredComponent } from '../components/link-expired.component';
 
 import { UrlService } from '../services/url.service';
 import { AnalyticsService } from '../services/analytics.service';
@@ -23,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'analytics', component: AnalyticsComponent },
   { path: 'analytics/:shorturl', component: AnalyticsItemComponent },
   { path: '404', component: NotFoundComponent },
+  { path: 'expired', component: LinkExpiredComponent },
   { path: ':url', component: ViewUrlComponent },
 ];
 
@@ -33,7 +38,8 @@ const appRoutes: Routes = [
     AnalyticsItemComponent,
     UrlShorteningComponent,
     ViewUrlComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LinkExpiredComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +49,9 @@ const appRoutes: Routes = [
     FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [
     UrlService,
