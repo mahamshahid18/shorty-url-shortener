@@ -1,4 +1,8 @@
-<div class="container-fluid">
+<div class="sort-controls">
+  <div class="header">
+    <h5>Sort Controls</h5>
+    <small>Use the toggle controls to set sorting conditions for the generated URLs</small>
+  </div>
   <form>
     <div class="form-container">
       <div class="form-item">
@@ -31,21 +35,25 @@
       </div>
     </div>
   </form>
-  <div class="list-group">
-    <a
-      class="list-group-item list-group-item-action flex-column align-items-start w-50 mt-1"
-      *ngFor="let url of urlsData"
-      [routerLink]="getLink(url.short_id)"
-    >
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">
-          {{ url.short_url }}
-        </h5>
-      </div>
-      <small class="mb-1">
-        {{ url.long_url }}
-      </small>
-    </a>
-  </div>
+</div>
+<div class="header">
+  <h5>All URLs Generated</h5>
+  <small>Click on an item to view more details</small>
+</div>
+<div class="list-group list-container">
+  <a
+    class="list-group-item list-group-item-action w-50 mt-1"
+    *ngFor="let url of urlsData"
+    [routerLink]="getLink(url.short_id)"
+  >
+    <div class="">
+      <h5 class="mb-1">
+        {{ url.short_url }}
+      </h5>
+    </div>
+    <small class="mb-1">
+      {{ url.long_url }}
+    </small>
+  </a>
 </div>
 

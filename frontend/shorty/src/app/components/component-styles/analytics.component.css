@@ -1,7 +1,29 @@
+
+.header {
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.header > h5 {
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 0px !important;
+}
+
+/* styles for sort controls section */
+.sort-controls {
+    background-color: var(--bg-dark);
+    padding: 10px 0px;
+}
+
 .form-container {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    margin-top: 15px;
 }
 
 .form-item {
@@ -13,4 +35,12 @@
 
 .form-item > * {
     margin: 5px 5px;
+}
+
+/* style for url container */
+.list-container {
+    display: flex;
+    align-items: center;
+    margin-top: 3vh;
+    padding-bottom: 50px;
 }
