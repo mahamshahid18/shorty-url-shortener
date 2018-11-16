@@ -14,10 +14,6 @@ let checkUrlExists = (req, res, next) => {
         if (data) {
             req.resolvedUrl = data.short_url;
             req.expired = checkLinkExpired(data.expiry, data.created_at);
-            console.log('checking url...')
-            console.log(data.short_url);
-            console.log(expired);
-            console.log('url check complete...');
         }
         next();
     })
