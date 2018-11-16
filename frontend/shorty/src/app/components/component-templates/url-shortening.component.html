@@ -1,46 +1,61 @@
 <div class="container">
-  <div class="row">
-    <p>
-      Shorten a URL by pasting it in the box below
-    </p>
-  </div>
-  <form action="">
-    <mat-form-field appearance="fill">
-      <mat-label>
-        URL
-      </mat-label>
-      <input
-        matInput
-        type="url"
+  <div class="layout">
+    <h5 class="mb-5">
+      Shorten a URL by pasting it in the box below. Additionally, you can also specify the expiry time of the link.
+    </h5>
+    <form>
+      <div class="fields">
+        <mat-form-field
+          appearance="fill"
+          class="url-field"
+        >
+          <mat-label>
+            URL
+          </mat-label>
+          <input
+            matInput
+            type="url"
 
-        placeholder="Enter a URL to shorten it"
-        name="url"
-        [(ngModel)]="input.url"
-        #url="ngModel"
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-select
-        placeholder="Expiry time in hours"
-        [(value)]="expirySelected"
+            placeholder="Enter a URL to shorten it"
+            name="url"
+            [(ngModel)]="input.url"
+            #url="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field
+          appearance="fill"
+          class="expiry-field"
+        >
+          <mat-label>
+            Expiry
+          </mat-label>
+          <mat-select
+            placeholder="In hours"
+            [(value)]="expirySelected"
+          >
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let hour of hourValues; let i = index" [value]="i + 1"> {{ i + 1 }} </mat-option>
+          </mat-select>
+          <mat-hint>Specify in hours</mat-hint>
+        </mat-form-field>
+      </div>
+      <button
+        class="btn btn-outline-secondary mt-3"
+        type="button"
+        (click)="shortenUrl(expirySelected)"
+        mat-raised-button
+        color="primary"
       >
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let hour of hourValues; let i = index" [value]="i + 1"> {{ i + 1 }} </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      (click)="shortenUrl(expirySelected)"
-      mat-raised-button
-      color="primary"
-    >
-      Button
-    </button>
-  </form>
-  <div>
-    <p *ngIf="shortUrl">
-      Shortened URL: {{ shortUrl }}
-    </p>
+        Shorten URL
+      </button>
+    </form>
+  </div>
+  <div class="url-view" *ngIf="shortUrl">
+    <mat-label class="title">Shortened URL</mat-label>
+    <mat-chip-list>
+      <mat-chip color="accent" selected [selectable] = "false">
+        {{ shortUrl }}
+      </mat-chip>
+    </mat-chip-list>
   </div>
 </div>
