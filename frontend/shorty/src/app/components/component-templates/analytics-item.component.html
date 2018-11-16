@@ -1,5 +1,5 @@
 <div class="container d-flex justify-content-center">
-  <mat-card class="mt-5 w-50">
+  <mat-card class="mt-5">
     <small
       class="expired-link"
       *ngIf="checkLinkExpired(url.expiry, url.created_at)"
@@ -14,24 +14,37 @@
     </mat-card-subtitle>
 
     <mat-card-content>
-      <span>Created {{ getAccessTimeString(url.created_at) }}</span>
+      <span class="date-stat">Created {{ getAccessTimeString(url.created_at) }}</span>
       <div class="data-container">
         <div class="data-item">
-          <span>Accessed</span>
-          <span>{{ url.access_count }} Times</span>
+          <div class="header">
+            <h6>Accessed</h6>
+          </div>
+          <mat-chip-list>
+            <mat-chip color="accent" selected [selectable]="false">
+              {{ url.access_count }} Times
+            </mat-chip>
+          </mat-chip-list>
         </div>
         <div class="data-item">
-          <span>Last Accessed</span>
-          <span> {{ getAccessTimeString(url.last_accessed) }} </span>
+          <div class="header">
+            <h6>Last Accessed</h6>
+          </div>
+          <mat-chip-list>
+            <mat-chip color="accent" selected [selectable]="false">
+              {{ getAccessTimeString(url.last_accessed) }}
+            </mat-chip>
+          </mat-chip-list>
         </div>
       </div>
     </mat-card-content>
 
-    <mat-card-actions>
+    <mat-card-actions class="d-flex justify-content-end">
       <button
         mat-raised-button
         color="primary"
         [routerLink]="'/' + url.short_id"
+        [disabled]="checkLinkExpired(url.expiry, url.created_at)"
       >
         OPEN LINK
       </button>
