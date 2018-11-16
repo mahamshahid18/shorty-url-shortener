@@ -51,8 +51,8 @@ router.route('/')
             const id = shortid.generate();
             const longUrl = req.body.url;
             const shortUrl = `${process.env.APP_BASE_URL}${id}`;
-            // TODO: change default value of expiry
-            const expiry = req.body.expiry || 1;
+            // default expiry period for links is 1 day, unless specified
+            const expiry = req.body.expiry || 24;
 
             const urlRecord = new Url({
                 short_id: id,
