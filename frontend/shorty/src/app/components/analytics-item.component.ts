@@ -38,7 +38,7 @@ export class AnalyticsItemComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  checkLinkExpired(expiryHours: number, createdTimeString: string) {
+  checkLinkExpired(expiryHours: number, createdTimeString: string): Boolean {
     const currentTime: Date = new Date();
     const createdTime: Date = new Date(createdTimeString);
 
@@ -49,11 +49,16 @@ export class AnalyticsItemComponent implements OnInit, OnDestroy {
     return expired;
   }
 
-  getAccessTimeString(time) {
-    return `${moment(time).fromNow()}`;
+  getAccessTimeString(time: string): string {
+    let formattedString = 'N/A';
+
+    if (time) {
+      formattedString = `${moment(time).fromNow()}`;
+    }
+    return formattedString;
   }
 
-  getLinkName(url) {
+  getLinkName(url: string): string {
     return url.replace('http://', '').replace('https://', '') || url;
   }
 

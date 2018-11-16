@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./component-styles/app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Shorty - A Friendly URL Shortener';
 }

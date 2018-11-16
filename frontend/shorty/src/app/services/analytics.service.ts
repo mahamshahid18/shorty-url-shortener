@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AnalyticsService {
     this.analyticsUrlPath = `${environment.backendBaseUrl}/analytics`;
   }
 
-  getAllUrls() {
+  getAllUrls(): Observable<any> {
     return this.http.get(this.analyticsUrlPath)
       .pipe(
         catchError(err => {
@@ -26,7 +27,7 @@ export class AnalyticsService {
       );
   }
 
-  getUrl(shorturl) {
+  getUrl(shorturl: string): Observable<any> {
     return this.http.get(`${this.analyticsUrlPath}?shorturl=${shorturl}`)
       .pipe(
         catchError((err) => {

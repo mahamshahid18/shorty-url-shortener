@@ -24,6 +24,7 @@ import { LinkExpiredComponent } from '../components/link-expired.component';
 
 import { UrlService } from '../services/url.service';
 import { AnalyticsService } from '../services/analytics.service';
+import { UtilitiesService } from '../services/utilities.service';
 
 const appRoutes: Routes = [
   { path: '', component: UrlShorteningComponent },
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     UrlService,
-    AnalyticsService
+    AnalyticsService,
+    UtilitiesService
   ],
   bootstrap: [AppComponent]
 })

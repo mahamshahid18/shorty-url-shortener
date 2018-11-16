@@ -42,7 +42,7 @@ export class AnalyticsComponent implements OnInit, OnDestroy, DoCheck {
       this.util.sortData(this.urlsData, this.sortByField, sortDirection, isDateField);
   }
 
-  getLink(id) {
+  getLink(id: string): string {
     return `/analytics/${ id }`;
   }
 

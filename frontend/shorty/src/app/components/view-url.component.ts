@@ -14,14 +14,14 @@ export class ViewUrlComponent implements OnInit, OnDestroy {
 
   constructor(private service: UrlService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const url = window.location.href;
     this.subscription = this.service.getResolvedLongUrl(url).subscribe((longUrl: string) => {
       window.location.href = longUrl;
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
