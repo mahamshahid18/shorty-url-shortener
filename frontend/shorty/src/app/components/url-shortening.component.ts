@@ -16,6 +16,7 @@ export class UrlShorteningComponent implements OnInit, OnDestroy {
   };
   hourValues: number[];
   subscription: Subscription;
+  expirySelected: number;
 
   constructor(private service: UrlService) {
     // 168 hours in a week, links can be active for
@@ -30,8 +31,8 @@ export class UrlShorteningComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  shortenUrl(expirySelected: number): void {
-    this.subscription = this.service.createShortUrl(this.input.url, expirySelected).subscribe((data) => {
+  shortenUrl(): void {
+    this.subscription = this.service.createShortUrl(this.input.url, this.expirySelected).subscribe((data) => {
       this.shortUrl = data.toString();
     });
   }

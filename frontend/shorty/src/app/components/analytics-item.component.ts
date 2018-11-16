@@ -16,13 +16,17 @@ import { AnalyticsService } from '../services/analytics.service';
 export class AnalyticsItemComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
-  url = {};
+  url = {
+    short_id: '',
+    short_url: '',
+    long_url: '',
+    expiry: 0,
+    created_at: '',
+    access_count: 0,
+    last_accessed: '',
+  };
 
   constructor(private service: AnalyticsService, private route: ActivatedRoute) {
-    this.url = {
-      long_url: '',
-      short_url: ''
-    };
   }
 
   ngOnInit() {
