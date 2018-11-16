@@ -59,6 +59,12 @@ form {
     color: var(--text-dark);
 }
 
+button {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    word-spacing: 1px;
+}
+
 @media screen and (max-width: 500px) {
     .url-view {
         flex-direction: column;
