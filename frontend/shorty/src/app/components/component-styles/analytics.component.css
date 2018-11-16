@@ -4,15 +4,6 @@
     text-align: center;
 }
 
-.header > h5 {
-    color: var(--text-dark);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    font-weight: bold;
-    margin-bottom: 0px !important;
-}
-
 /* styles for sort controls section */
 .sort-controls {
     background-color: var(--bg-dark);
@@ -43,4 +34,14 @@
     align-items: center;
     margin-top: 3vh;
     padding-bottom: 50px;
+}
+
+.list-container > * {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .list-container > * {
+        width: 90%;
+    }
 }

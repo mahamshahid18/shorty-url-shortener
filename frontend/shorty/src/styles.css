@@ -8,3 +8,12 @@
     --bg-dark: #f2f5f8;
     --bg-light: #fafafa;
 }
+
+.header > h5, h6 {
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 0px !important;
+}
