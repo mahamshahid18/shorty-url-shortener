@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendBaseUrl: 'http://localhost:3000',
-  appBaseUrl: 'http://localhost:4200'
+  backendBaseUrl: 'https://shorty-backend.herokuapp.com',
+  appBaseUrl: 'https://mahamshahid18.github.io/shorty-url-shortener'
 };
