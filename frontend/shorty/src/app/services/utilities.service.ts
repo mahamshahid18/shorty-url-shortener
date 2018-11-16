@@ -19,6 +19,10 @@ export class UtilitiesService {
           value =  1 * sortDirection;
         } else if (date2.isAfter(date1)) {
           value = -1 * sortDirection;
+        } else if (isNaN(date1.valueOf())) {
+          value = 1 * sortDirection;
+        } else if (isNaN(date2.valueOf())) {
+          value = -1 * sortDirection;
         }
       } else {
         if (a[field] > b[field]) {
