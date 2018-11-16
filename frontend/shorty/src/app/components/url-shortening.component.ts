@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class UrlShorteningComponent implements OnInit, OnDestroy {
 
   shortUrl = '';
+  shortId = '';
   input = {
     url: ''
   };
@@ -27,14 +28,19 @@ export class UrlShorteningComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   shortenUrl(): void {
     this.subscription = this.service.createShortUrl(this.input.url, this.expirySelected).subscribe((data) => {
-      this.shortUrl = data.toString();
+      const values = data.toString().split(',');
+      this.shortUrl = values[0];
+      this.shortId = values[1];
     });
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
 
 }

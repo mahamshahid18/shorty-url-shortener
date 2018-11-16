@@ -27,12 +27,13 @@ export class AnalyticsComponent implements OnInit, OnDestroy, DoCheck {
 
     this.subscription = this.service.getAllUrls()
       .subscribe((result: any) => {
+        this.urlsData = result;
         this.urlsData = this.util.sortData(result, this.sortByField, sortDirection, false);
       });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  getLink(id: string): string {
+    return `/analytics/${id}`;
   }
 
   ngDoCheck(): void {
@@ -42,8 +43,10 @@ export class AnalyticsComponent implements OnInit, OnDestroy, DoCheck {
       this.util.sortData(this.urlsData, this.sortByField, sortDirection, isDateField);
   }
 
-  getLink(id: string): string {
-    return `/analytics/${ id }`;
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 

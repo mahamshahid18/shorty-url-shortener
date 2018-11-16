@@ -38,10 +38,6 @@ export class AnalyticsItemComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   checkLinkExpired(expiryHours: number, createdTimeString: string): Boolean {
     const currentTime: Date = new Date();
     const createdTime: Date = new Date(createdTimeString);
@@ -64,6 +60,12 @@ export class AnalyticsItemComponent implements OnInit, OnDestroy {
 
   getLinkName(url: string): string {
     return url.replace('http://', '').replace('https://', '') || url;
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

@@ -53,7 +53,7 @@
   <div class="url-view" *ngIf="shortUrl">
     <mat-label class="title">Shortened URL</mat-label>
     <mat-chip-list>
-      <mat-chip color="accent" selected [selectable] = "false">
+      <mat-chip color="accent" selected [selectable] = "false" [routerLink]="'/' + shortId">
         {{ shortUrl }}
       </mat-chip>
     </mat-chip-list>
