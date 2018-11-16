@@ -65,7 +65,7 @@ router.route('/')
             });
             urlRecord.save()
             .then((data) => {
-                res.status(200).send(`${data.short_url},${this.short_id}`);
+                res.status(200).send(`${data.short_url},${data.short_id}`);
                 console.log('Sending new shortened url: %s', data.short_url);
             })
             .catch(err => next(err));
